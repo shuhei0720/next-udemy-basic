@@ -1,9 +1,9 @@
 import Image from "next/image"
-export const dynamic = 'force-dynamic' // SSR強制
+export const revalidate = 10
 
-export default async function SSRPage() {
+export default async function SSGPage() {
   const res = await fetch('https://dog.ceo/api/breeds/image/random', {
-    cache: 'no-store'
+    next: { revalidate: 10 }
   })
   const resJson = await res.json()
   const image = resJson.message
@@ -11,7 +11,7 @@ export default async function SSRPage() {
   const timestamp = new Date().toISOString()
   return (
     <div>
-      SSR 毎回リロード: { timestamp }
+      ISR 10秒ごとにリロード: { timestamp }
       <Image src={image} width={400} alt="" />
     </div>
   )
