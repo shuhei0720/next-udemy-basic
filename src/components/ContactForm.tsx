@@ -62,6 +62,9 @@ export default function ContactForm() {
               onBlur={handleBlur}              
               className="
               w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 outline-none py-1 px-3 leading-8" />
+              { state.errors.email && (
+                <p className="text-red-500 text-sm mt-1">{state.errors.email.join(',')}</p>
+              )}
               { clientErrors.email && (
                 <p className="text-red-500 text-sm mt-1">{clientErrors.email}</p>
               )}
